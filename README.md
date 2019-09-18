@@ -50,16 +50,16 @@ callback(null, user, context);
 * Run pip install -r requirements.txt to install the dependencies
 
 * Run python server.py, in the application folder.The app will be served at http://localhost:3000/. 
-![login page](/images/Login_Page.png)
+![login page](/images/Login_Page.PNG)
 
 * Once login is clicked, user will be redirected to auth0 authication page. 
   * If the user is authorized to access application following page will be displayed
-![Dashboard](/images/dashboard.png)
+![Dashboard](/images/dashboard.PNG)
   * If the user is not authorized following page will be displayed
- ![Unauthorised](/images/Unauthorised.png)
+ ![Unauthorised](/images/Unauthorised.PNG)
  
 * On the dashboard page, user can click **APPRULE** to get rules associated with all the application
-![ClientApprule](/images/Application_Rule_Display.png)
+![ClientApprule](/images/Application_Rule_Display.PNG)
 
 # Application code details:
 
