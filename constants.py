@@ -9,5 +9,3 @@ PROFILE_KEY = 'profile'
 SECRET_KEY = 'ThisIsTheSecretKey'
 JWT_PAYLOAD = 'jwt_payload'
 ERR_MESG = 'error_mesg'
-CLIENT_RULE = 'client_rule'
-

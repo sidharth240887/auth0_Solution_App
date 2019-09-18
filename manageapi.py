@@ -112,11 +112,11 @@ def get_client_rule_map():
                 ## If there is a match, handle cases differently as per equality and non equality
                 if(matches):
                     for match in matches:
-                        if(((match[2] == client_name) & (match[1] == "===")) | \
-                          ((match[2] == client_id) & (match[1] == "==="))):
+                        if(((match[2] == client_name) and (match[1] == "===")) or \
+                          ((match[2] == client_id) and (match[1] == "==="))):
                             if rule["name"] not in mapping[key]: mapping[key].append(rule["name"])
 
-                        if(not((match[2] == client_name) | (match[2] == client_id))):
+                        if(not((match[2] == client_name) or (match[2] == client_id))):
                             if((match[1] == "!==")):
                                 if rule["name"] not in mapping[key]: mapping[key].append(rule["name"])
                  

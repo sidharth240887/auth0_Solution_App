@@ -91,10 +91,6 @@ def callback_handling():
             'name': userinfo['name'],
             'picture': userinfo['picture']
         }
-		
-        #Api call to get the client rules mapping	
-        client_rule_map = manageapi.get_client_rule_map()
-        session[constants.CLIENT_RULE] = client_rule_map
 			
         return redirect('/dashboard')
     else:
@@ -127,12 +123,22 @@ def logout():
 def dashboard():
     return render_template('dashboard.html',
                            userinfo=session[constants.PROFILE_KEY],
-                           client_rule_info = session[constants.CLIENT_RULE],
                            userinfo_pretty=json.dumps(session[constants.JWT_PAYLOAD], indent=4))
+
+@app.route('/appruledisplay')
+@requires_auth
+def appruledisplay():
+    client_rule_map = manageapi.get_client_rule_map()
+    return render_template('appruledisplay.html',
+                           userinfo=session[constants.PROFILE_KEY],
+                           client_rule_info=client_rule_map)
+
 @app.route('/unauthorised')
 def unauthorised():
+    error_mesg = session[constants.ERR_MESG]
+    session.clear()
     return render_template('unauthorised.html',
-                           error=session[constants.ERR_MESG])
+                           error=error_mesg)
 
 
 if __name__ == "__main__":
