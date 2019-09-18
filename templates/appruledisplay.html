@@ -12,15 +12,14 @@
             <div class="login-page clearfix">
                 <div class="logged-in-box auth0-box logged-in">
                     <h1 id="logo"><img src="//cdn.auth0.com/samples/auth0_logo_final_blue_RGB.png" /></h1>
-                    <img class="avatar" src="{{userinfo['picture']}}"/>
-                    <h2><b>Welcome {{userinfo['name']}}</b></h2>
-                    <h3><b>List of Clients and Rules associated with clients</b></h3>
+                    <h2><b>List of Clients and Rules associated with clients</b></h2>
                     {%for item in client_rule_info%}
                     <ul><b>Client : {{item}}</b></ul>
                     {%for rule in client_rule_info[item]%}
                     <li>{{rule}}</li>
                     {% endfor %}
                     {% endfor %}
+                    <a id="qsClientBtn" class="btn btn-primary btn-lg btn-logout btn-block" href="/dashboard">Dashboard</a>
                     <a id="qsLogoutBtn" class="btn btn-primary btn-lg btn-logout btn-block" href="/logout">Logout</a>
                 </div>
             </div>
