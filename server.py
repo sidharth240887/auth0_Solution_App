@@ -130,7 +130,6 @@ def dashboard():
 def appruledisplay():
     client_rule_map = manageapi.get_client_rule_map()
     return render_template('appruledisplay.html',
-                           userinfo=session[constants.PROFILE_KEY],
                            client_rule_info=client_rule_map)
 
 @app.route('/unauthorised')
