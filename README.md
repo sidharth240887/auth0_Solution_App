@@ -1,61 +1,65 @@
-# Auth0 Python Web App Sample
+# auth0_Solution_App
 
-This sample demonstrates how to add authentication to a Python web app using Auth0.
+This sample python web application demonstrates usage of auth0 management API's to create a list of Rules for registered
+Applications in the auth0 account.
 
-# Running the App
+# Getting Started
 
-To run the sample, make sure you have `python` and `pip` installed.
+* To run the sample, make sure you have `python` and `pip` installed.
 
-Rename `.env.example` to `.env` and populate it with the client ID, domain, secret, callback URL and audience for your
-Auth0 app. If you are not implementing any API you can use `https://YOUR_DOMAIN.auth0.com/userinfo` as the audience. 
-Also, add the callback URL to the settings section of your Auth0 client.
+* Log into your auth0 account, select Applications and after click on Create application button.
 
-Register `http://localhost:3000/callback` as `Allowed Callback URLs` and `http://localhost:3000` 
-as `Allowed Logout URLs` in your client settings.
+* Select the Application type as Regular Web Application, click on Create. In the list of technologies
+  available select python. Rename you app accordingly.
+  
+* Auth0 will open client application dashboard, on the dashboard client settings tab Register 
+  `http://localhost:3000/callback` as `Allowed Callback URLs` and `http://localhost:3000` as 
+  `Allowed Logout URLs`.
 
-Run `pip install -r requirements.txt` to install the dependencies and run `python server.py`. 
-The app will be served at [http://localhost:3000/](http://localhost:3000/).
+# Additional configurations 
 
-# Running the App with Docker
+* Since the application uses management APIs to list rules and clients. We need to provide authorization
+  to be able to generate access tokens for the API.
+  
+* Select APIs tab, next select Auth0 Management API. Click on Machine to Machine Applications tab. In this 
+  section you will see a list Applications. Select your Sample App and toggle to Authorized. Additionaly you
+  need to expand the same row to get the list of scopes that should be granted to this client.
+  
+* Please select only read:clients and read:rules scope in order to allow limited access. Click on UPADTE button
+  below and settings are saved.
 
-To run the sample, make sure you have `docker` installed.
+# Rules to be applied
+* This Sample application will whitelist users based on email address. So that only authorized users are able 
+  to access the application.
+* Below is the sample rule to achieve the above objective.  
+  ```
+  function (user, context, callback) {
+ 
+    if(context.clientName === 'Solution_App'){
+      // authorized users
+  	  const whitelist = [ 'solutionApp.user1@example.com','solutionApp.user2@example.com']; 
+  	  const userHasAccess = whitelist.some(function (email) {
+      return email === user.email;
+      });    
+      if (!userHasAccess) {
+        return callback(new UnauthorizedError('Email Access denied.'));
+      }
+    }
+  callback(null, user, context);
+}```
 
-To run the sample with [Docker](https://www.docker.com/), make sure you have `docker` installed.
+# Running the auth0_Solution_App
 
-Rename the .env.example file to .env, change the environment variables, and register the URLs as explained [previously](#running-the-app).
+* Download the source code from below link:
+<link tbc>
 
-Run `sh exec.sh` to build and run the docker image in Linux or run `.\exec.ps1` to build 
-and run the docker image on Windows.
+* Rename `.env.example` in sample application to `.env` and populate it with the client ID, domain, 
+  secret, callback URL and audience for your Auth0 app.
+  
+* Run `pip install -r requirements.txt` to install the dependencies 
 
-## What is Auth0?
+* Run `python server.py`, in the application folder.The app will be served at [http://localhost:3000/](http://localhost:3000/).
+  Screen shot of the application home page:
 
-Auth0 helps you to:
 
-* Add authentication with [multiple authentication sources](https://auth0.com/docs/identityproviders),
-either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, among others**,or 
-enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
-* Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
-* Add support for **[linking different user accounts](https://auth0.com/docs/link-accounts)** with the same user.
-* Support for generating signed [JSON Web Tokens](https://auth0.com/docs/jwt) to call your APIs and
-**flow the user identity** securely.
-* Analytics of how, when and where users are logging in.
-* Pull data from other sources and add it to the user profile, through [JavaScript rules](https://auth0.com/docs/rules).
 
-## Create a free account in Auth0
-
-1. Go to [Auth0](https://auth0.com) and click Sign Up.
-2. Use Google, GitHub or Microsoft Account to login.
-
-## Issue Reporting
-
-If you have found a bug or if you have a feature request, please report them at this repository issues section.
-Please do not report security vulnerabilities on the public GitHub issue tracker. 
-The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
-
-## Author
-
-[Auth0](https://auth0.com)
-
-## License
-
-This project is licensed under the MIT license. See the [LICENSE](LICENCE) file for more info.
