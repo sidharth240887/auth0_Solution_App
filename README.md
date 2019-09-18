@@ -6,9 +6,9 @@ This sample python web application demonstrates usage of auth0 management API's 
 
 * To run the sample, make sure you have python and pip installed.
 
-* Log into your auth0 account, select Applications and after click on Create application button.
+* Log into your auth0 account, select Applications and click on Create application button.
 
-* Select the Application type as Regular Web Application, click on Create. In the list of technologies available select python. Rename you  application accordingly.
+* Select the Application type as Regular Web Application, click on Create. In the list of technologies available select Python. Rename you  application accordingly.
 
 * Auth0 will open client application dashboard, on the dashboard client settings tab Register http://localhost:3000/callback as Allowed Callback URLs and http://localhost:3000 as Allowed Logout URLs.
 
@@ -56,7 +56,7 @@ https://github.com/sidharth240887/auth0_Solution_App.git
 
 * Once login is clicked, user will be redirected to auth0 authication page. 
   * If the user is authorized to access application following page will be displayed
-![Dashboard](/images/dashboard.PNG)
+ ![Dashboard](/images/dashboard.PNG)
   * If the user is not authorized following page will be displayed
  ![Unauthorised](/images/Unauthorised.PNG)
  
@@ -74,12 +74,11 @@ This code logic is implemented in file ```manageapi.py```
 **Algorithm:**
 * Get a list of applications and rules using the auth0 management APIs
 * For each application parse all the rules to check for following conditions:
-	* If rule contains application name or application id, add the rule to the application
-	* If rule contains not condition(!==) for the application name or application id, do not add
-	  rule for the applcation. That rule will be applicable for rest of the applications, 
+	* If rule contains application name or id, add the rule to the application
+	* If rule contains not condition(!==) for the application name or id, do not add
+	  rule for the application. This rule will be applicable for rest of the applications, 
 	  hence will be added to them.
-	* If rule has no application id or name, it will be added to all the applications. Since it 
-	  is applicable for all.
+	* If rule has no application id or name, it will be added to all the applications.
 
 **Application Flow details:**
 When user hits the **/home** page, is prompted for a Log in. After Login is clicked, user is redirected to 
