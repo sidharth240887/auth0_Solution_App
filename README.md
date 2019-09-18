@@ -47,7 +47,7 @@ callback(null, user, context);
 ```
 https://github.com/sidharth240887/auth0_Solution_App.git
 ```
-* Rename .env.Sample in sample application to .env and populate it with the client ID, domain, secret, callback URL and audience for your Auth0 app.
+* Rename .env.example in sample application to .env and populate it with the client ID, domain, secret, callback URL and audience for your Auth0 app.
 
 * Run pip install -r requirements.txt to install the dependencies
 
