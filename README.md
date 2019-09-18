@@ -65,7 +65,7 @@ https://github.com/sidharth240887/auth0_Solution_App.git
 
 # Application code details:
 
-auth0_Solution_App Application objective is to display a set of rules applied for each application. Since rules
+```auth0_Solution_App``` Application objective is to display a set of rules applied for each application. Since rules
 and applications do not have a direct relationship, Rules are parsed to check for application name and id in 
 order to establish which rules are applied to which application.
 
@@ -81,6 +81,7 @@ This code logic is implemented in file ```manageapi.py```
 	* If rule has no application id or name, it will be added to all the applications.
 
 **Application Flow details:**
+
 When user hits the **/home** page, is prompted for a Log in. After Login is clicked, user is redirected to 
 auth0 authentication page. If the user is authorised to access the application, and successfuly authenticates
 user is redirected to **/dashboard** page with user information. 
